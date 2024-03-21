@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QWidget, QFrame
+from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QWidget, QFrame,QPushButton
 from PyQt6.QtCore import Qt
 from password_manager.Entries import Entry
 class RegWin(QMainWindow):
@@ -33,6 +33,8 @@ border: none
         self.layout.addWidget(self.email_box)
         self.layout.addWidget(self.passwd_box)
         self.layout.addWidget(self.confirm_passwd)
+
+        self.regbtn = QPushButton('Register')
 
 
 if __name__ == '__main__':
