@@ -1,5 +1,3 @@
-import typing
-from PyQt6 import QtCore
 from PyQt6.QtWidgets import (QApplication, QListWidget, QLabel, QCheckBox, QWidget, QMainWindow, QFormLayout, QToolButton, QPushButton,
                              QMenu, QCalendarWidget, QDialog, QVBoxLayout, QLineEdit, QHBoxLayout, QRadioButton, QTimeEdit, QComboBox,
                              QColorDialog)
