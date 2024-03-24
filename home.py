@@ -1,22 +1,22 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QGridLayout, QWidget, QFrame, QPushButton, QMessageBox
-from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QGridLayout, QWidget, QFrame, QHBoxLayout
 from circle_buttons import CircularButton
-
+from passwordFrame import PasswordFrame
+from Sidebar import SideBar
+from PyQt6.QtCore import Qt
 class Home(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.centralWidget = QWidget()
-        self.setCentralWidget(self.centralWidget)
-        self.layout = QGridLayout(self.centralWidget)
+        centralWidget = QWidget()
+        self.setCentralWidget(centralWidget)
+        layout = QHBoxLayout(centralWidget)
+        sidebar = SideBar()
+        layout.addWidget(sidebar)
 
-        settings = CircularButton('Settings', None, '#004AAD', height=200, width = 200)
-        new_passwrd = CircularButton(' Save New Password', None, color ='#004AAD', height = 200, width = 200)
-        passwrd_generator = CircularButton('Generate Password', None, color= '#004AAD', height = 200, width = 200)
-
+        passwrd_box = PasswordFrame(locked = False, passwords = [['bbc.com', 'Elliott', 'Pandek2008'], ['google.com', 'Elliott', 'EK200828'], ['itv.co.uk', 'Elliott', 'EK200828'], ['lego.com', 'Elliott', 'Pandek2008']])
+        passwrd_box.layout.setAlignment(Qt.AlignmentFlag.AlignLeft)
         
-        self.layout.addWidget(settings, 0, 0)
-        self.layout.addWidget(new_passwrd, 1, 0)
-        self.layout.addWidget(passwrd_generator, 2, 0)
+        layout.addWidget(passwrd_box)
+        
 if __name__ == '__main__':
     app = QApplication([])
     win = Home()
