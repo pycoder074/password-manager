@@ -6,10 +6,8 @@ class PasswordFrame(QFrame):
         super().__init__()
         self.layout = QVBoxLayout(self)
         data_length = len(passwords)
-        print(data_length)
         self.data_table = QTableWidget(len(passwords), 3)
         self.data_table.setHorizontalHeaderLabels(["Website", "Username", "Password"])
-        print(75 * data_length)
         self.data_table.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.setFixedSize(350, 200 * data_length)
         self.data_table.setStyleSheet("""
