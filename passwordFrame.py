@@ -1,38 +1,62 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow, QFrame, QTableWidget, QTableWidgetItem, QVBoxLayout
+from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QLabel, QVBoxLayout, QPushButton
 from PyQt6.QtCore import Qt
-class PasswordFrame(QFrame):
+from PyQt6.QtGui import QFont
+
+class PasswordFrame(QTableWidget):
     def __init__(self, locked: bool, passwords: list):
         super().__init__()
+        self.setHorizontalHeaderLabels(["Website", "Username", "Password"])
         self.layout = QVBoxLayout(self)
-        data_length = len(passwords)
-        self.data_table = QTableWidget(len(passwords), 3)
-        self.data_table.setHorizontalHeaderLabels(["Website", "Username", "Password"])
-        print(self.width(), self.height())
-        self.layout.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignCenter)
-        self.data_table.setStyleSheet("""
-                                      QTableWidget {
-                                      background-color: none;
-                                      }
-                                      QTableWidgetItem {
-                                      color: black;
-                                      }
-                                      QTableWidgetItem:selected {
-                                      background-color: none;
-                                      color: white;
-                                      }
-                                      """)
-        for j, (website, username, password) in enumerate(passwords):
-            self.data_table.setItem(j, 0, QTableWidgetItem(website))
-            self.data_table.setItem(j, 1, QTableWidgetItem(username))
-            self.data_table.setItem(j, 2, QTableWidgetItem(password))
-            
-        self.layout.addWidget(self.data_table)
+        if not locked:
+            self.setStyleSheet("""
+                                        QTableWidget {
+                                        background-color: none;
+                                        border: none;
+                                        }
+                                        QTableWidgetItem {
+                                        color: black;
+                                        }
+                                        QTableWidgetItem:selected {
+                                        background-color: none;
+                                        color: white;
+                                        }
+                                        """)
+            data_font = QFont('Roboto', 16)
+            self.setFont(data_font)
+            self.setColumnCount(3)
+            self.setRowCount(len(passwords))
 
+            for j, (website, username, password) in enumerate(passwords):
+                self.setItem(j, 0, QTableWidgetItem(website))
+                self.setItem(j, 1, QTableWidgetItem(username))
+                self.setItem(j, 2, QTableWidgetItem(password))
+
+            self.horizontalHeader().setMinimumSectionSize(200)
+        else:
+            self.setShowGrid(False)
+            self.setStyleSheet("""
+                               QTableWidget{
+                               background-color: #D3D3D3
+                               }""")
+            self.locked_label = QLabel('Passwords are locked \U0001F512')
+            self.layout.addWidget(self.locked_label)
+            self.layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            self.unlock_button = QPushButton('Unlock Passwords')
+            self.unlock_button.setStyleSheet("""
+                                             QPushButton {
+                                             background-color: #C0C0C
+                                             }""")
+            self.layout.addWidget(self.unlock_button)
 if __name__ == '__main__':
     app = QApplication([])
     window = QMainWindow()
-    passwords = [['bbc.com', 'Elliott', 'Pandek2008'], ['google.com', 'Elliott', 'EK200828'], ['itv.co.uk', 'Elliott', 'EK200828'], ['lego.com', 'Elliott', 'Pandek2008']]
-    frame = PasswordFrame(locked=False, passwords=passwords)
+    passwords = [
+        ['bbc.com', 'Elliott', 'Pandek2008'],
+        ['google.com', 'Elliott', 'EK200828'],
+        ['itv.co.uk', 'Elliott', 'EK200828'],
+        ['lego.com', 'Elliott', 'Pandek2008']
+    ]
+    frame = PasswordFrame(locked=True, passwords=passwords)
     window.setCentralWidget(frame)
     window.show()
     app.exec()
