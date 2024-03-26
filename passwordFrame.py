@@ -1,6 +1,5 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QFrame, QTableWidget, QTableWidgetItem, QVBoxLayout
 from PyQt6.QtCore import Qt
-
 class PasswordFrame(QFrame):
     def __init__(self, locked: bool, passwords: list):
         super().__init__()
@@ -8,17 +7,14 @@ class PasswordFrame(QFrame):
         data_length = len(passwords)
         self.data_table = QTableWidget(len(passwords), 3)
         self.data_table.setHorizontalHeaderLabels(["Website", "Username", "Password"])
-        self.data_table.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self.setFixedSize(350, 200 * data_length)
+        print(self.width(), self.height())
+        self.layout.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignCenter)
         self.data_table.setStyleSheet("""
                                       QTableWidget {
-                                      background-color: #ffffff;
-                                      border: 10px solid #d0d0d0;
+                                      background-color: none;
                                       }
                                       QTableWidgetItem {
                                       color: black;
-                                      padding: 10px;
-                                      margin: 5px;
                                       }
                                       QTableWidgetItem:selected {
                                       background-color: none;
@@ -38,6 +34,5 @@ if __name__ == '__main__':
     passwords = [['bbc.com', 'Elliott', 'Pandek2008'], ['google.com', 'Elliott', 'EK200828'], ['itv.co.uk', 'Elliott', 'EK200828'], ['lego.com', 'Elliott', 'Pandek2008']]
     frame = PasswordFrame(locked=False, passwords=passwords)
     window.setCentralWidget(frame)
-    window.setGeometry(100, 100, 400, 300)  # Set window size
     window.show()
     app.exec()
