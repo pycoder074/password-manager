@@ -13,6 +13,7 @@ class Home(QMainWindow):
         layout.addWidget(sidebar)
 
         passwrd_box = PasswordFrame(locked = False, passwords = [['bbc.com', 'Elliott', 'Pandek2008'], ['google.com', 'Elliott', 'EK200828'], ['itv.co.uk', 'Elliott', 'EK200828'], ['lego.com', 'Elliott', 'Pandek2008']])
+        layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         layout.addWidget(passwrd_box)
 
         layout.addStretch(1)
