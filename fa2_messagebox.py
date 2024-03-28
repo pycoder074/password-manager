@@ -29,6 +29,9 @@ font: 25px solid black
         layout.addWidget(self.title)
         self.title.setAlignment(Qt.AlignmentFlag.AlignVCenter)
         layout.addWidget(qr_label)
+    async def send_callback(self):
+        await callback
+
 
 
 if __name__ == '__main__':

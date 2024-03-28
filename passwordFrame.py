@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QLabel, QVBoxLayout, QPushButton, QMessageBox
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont
-
+from fa2_messagebox import MessageBox
 class PasswordFrame(QTableWidget):
     def __init__(self, locked: bool, passwords: list):
         super().__init__()
@@ -13,6 +13,10 @@ class PasswordFrame(QTableWidget):
         else:
             self.unlock()
     def unlock(self):
+        unlock = QMainWindow()
+        fa = MessageBox('Scan QR to unlock photos')
+        unlock.setCentralWidget(fa)
+        unlock.show()
         self.setShowGrid(True)
         self.setColumnCount(3)
         self.setHorizontalHeaderLabels(["Website", "Username", "Password"])
