@@ -1,10 +1,11 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QLabel, QVBoxLayout, QPushButton
+from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QLabel, QVBoxLayout, QPushButton, QMessageBox
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont
 
 class PasswordFrame(QTableWidget):
     def __init__(self, locked: bool, passwords: list):
         super().__init__()
+        self.passwords = passwords
         self.layout = QVBoxLayout(self)
         self.widgets = []
         if locked:
@@ -33,7 +34,7 @@ class PasswordFrame(QTableWidget):
         data_font = QFont('Roboto', 16)
         self.setFont(data_font)
         self.setColumnCount(3)
-        self.setRowCount(len(passwords))
+        self.setRowCount(len(self.passwords))
         for j, (website, username, password) in enumerate(passwords):
             website = QTableWidgetItem(website)
             website.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
