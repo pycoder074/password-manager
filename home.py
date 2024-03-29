@@ -16,8 +16,10 @@ class Home(QMainWindow):
                                                              ['google.com', 'Elliott', 'EK200828'], 
                                                              ['itv.co.uk', 'Elliott', 'EK200828'], 
                                                              ['lego.com', 'Elliott', 'Pandek2008']])
+        passwrd_box_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         passwrd_box_layout.addWidget(passwrd_box)
 
+        passwrd_box_layout.addStretch(1)
 
         self.search_bar_frame = QWidget()
         search_bar_layout = QVBoxLayout(self.search_bar_frame)

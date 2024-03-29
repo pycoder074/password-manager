@@ -1,11 +1,9 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QLabel, QVBoxLayout, QPushButton, QMessageBox
+from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QLabel, QVBoxLayout, QPushButton
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont
-from fa2_messagebox import MessageBox
 class PasswordFrame(QTableWidget):
     def __init__(self, locked: bool, passwords: list):
         super().__init__()
-        self.passwords = passwords
         self.layout = QVBoxLayout(self)
         self.widgets = []
         if locked:
@@ -13,10 +11,6 @@ class PasswordFrame(QTableWidget):
         else:
             self.unlock()
     def unlock(self):
-        unlock = QMainWindow()
-        fa = MessageBox('Scan QR to unlock photos')
-        unlock.setCentralWidget(fa)
-        unlock.show()
         self.setShowGrid(True)
         self.setColumnCount(3)
         self.setHorizontalHeaderLabels(["Website", "Username", "Password"])
@@ -38,7 +32,7 @@ class PasswordFrame(QTableWidget):
         data_font = QFont('Roboto', 16)
         self.setFont(data_font)
         self.setColumnCount(3)
-        self.setRowCount(len(self.passwords))
+        self.setRowCount(len(passwords))
         for j, (website, username, password) in enumerate(passwords):
             website = QTableWidgetItem(website)
             website.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
