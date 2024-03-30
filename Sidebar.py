@@ -11,7 +11,7 @@ class SideBar(QFrame):
                            """)
         
         self.button_frame_layout = QVBoxLayout(self)
-        self.button_frame_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.button_frame_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
         
         settings = CircularButton('Settings', None, '#004AAD', height=200, width=200)
         self.button_frame_layout.addWidget(settings)
@@ -22,4 +22,4 @@ class SideBar(QFrame):
         password_generator = CircularButton('Generate Password', None, color='#004AAD', height=200, width=200)
         self.button_frame_layout.addWidget(password_generator)
         
-        self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        self.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Expanding)

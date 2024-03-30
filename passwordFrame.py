@@ -5,6 +5,7 @@ class PasswordFrame(QTableWidget):
     def __init__(self, locked: bool, passwords: list):
         super().__init__()
         self.layout = QVBoxLayout(self)
+        self.passwords = passwords
         self.widgets = []
         if locked:
             self.lock()
@@ -32,8 +33,8 @@ class PasswordFrame(QTableWidget):
         data_font = QFont('Roboto', 16)
         self.setFont(data_font)
         self.setColumnCount(3)
-        self.setRowCount(len(passwords))
-        for j, (website, username, password) in enumerate(passwords):
+        self.setRowCount(len(self.passwords))
+        for j, (website, username, password) in enumerate(self.passwords):
             website = QTableWidgetItem(website)
             website.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
             self.setItem(j, 0, website)
@@ -45,9 +46,6 @@ class PasswordFrame(QTableWidget):
             password = QTableWidgetItem(password)
             password.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
             self.setItem(j, 2, password)
-
-
-        self.horizontalHeader().setMinimumSectionSize(200)
     
     def lock(self):
         self.setShowGrid(False)
