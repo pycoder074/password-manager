@@ -6,7 +6,7 @@ class PasswordLengthSlider(QSlider):
         super().__init__()
         self.layout = QFormLayout()
         self.setLayout(self.layout)
-        self.valueLabel = QLabel('Length:')
+        self.valueLabel = QLabel('Length: 5')
         self.layout.addWidget(self.valueLabel)
         self.setOrientation(Qt.Orientation.Horizontal)
         self.setMaximum(maxlength)

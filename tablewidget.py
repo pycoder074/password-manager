@@ -1,7 +1,7 @@
 import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem
 
-class MyWindow(QMainWindow):
+class tableWidget(QMainWindow):
     def __init__(self):
         super().__init__()
 
@@ -22,7 +22,7 @@ class MyWindow(QMainWindow):
 
 def main():
     app = QApplication(sys.argv)
-    window = MyWindow()
+    window = tableWidget()
     window.show()
     sys.exit(app.exec())
 

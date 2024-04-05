@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QWid
 from Entries import Entry
 from PyQt6.QtCore import Qt
 import sqlite3
-import bcrypt
+from encryption import encrypt
 class RegWin(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -76,14 +76,14 @@ border: none
             warning.setIcon(QMessageBox.Icon.Warning)
             warning.exec()
         else:
-            passwd = passwd.encode('utf-8')
-            salt = bcrypt.gensalt()
-            passwd = bcrypt.hashpw(passwd, salt)
+            encryption = encrypt(passwd)
+            salt = encryption['salt']
+            hash_ = encryption['encrypted']
             try:
                 # Insert user data into the database
                 conn = sqlite3.connect('users.sqlite3')
                 c = conn.cursor()
-                c.execute('INSERT INTO users (username, passwd, salt, email) VALUES (?, ?, ?, ?)', (username, passwd, salt, email))
+                c.execute('INSERT INTO users (username, passwd, salt, email) VALUES (?, ?, ?, ?)', (username, hash_, salt, email))
                 conn.commit()
                 c.close()
                 print('User registered')
