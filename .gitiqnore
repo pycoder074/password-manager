@@ -152,7 +152,6 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-password-manager-2bed3-firebase-adminsdk-ghgx0-3a780548e5.json
 
 users.sqlite3
 
