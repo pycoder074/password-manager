@@ -5,6 +5,7 @@ from encryption import encrypt
 import os
 def save_gen_passwrd(passwrd, website = None, username = None):
     cred = os.environ.get("SERVICE_ACCOUNT_KEY_PATH")
+    print(cred)
     cred = credentials.Certificate(cred)
     firebase_admin.initialize_app(cred)
     db = firestore.client()
