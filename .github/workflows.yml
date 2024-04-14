@@ -4,6 +4,7 @@ jobs:
     steps:
       - name: Access Secret
         env:
+        SERVICE_ACCOUNT_KEY: |
           AUTH_PROVIDER_X509_CERT_URL: ${{ secrets.AUTH_PROVIDER_X509_CERT_URL }}
           AUTH_URI: ${{ secrets.AUTH_PROVIDER_X509_CERT_URL }}
           CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
