@@ -3,7 +3,6 @@ from passwordFrame import PasswordFrame
 from Sidebar import SideBar
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont
-
 class Home(QMainWindow):
     def __init__(self):
         super().__init__()

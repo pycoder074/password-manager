@@ -1,9 +1,3 @@
-name: Access Secret Workflow
-
-on:
-  push:
-    branches:
-      - '*'
 
 jobs:
   my_job:
@@ -25,3 +19,4 @@ jobs:
               "TOKEN_URI": "${{ secrets.TOKEN_URI }}",
               "UNIVERSE_DOMAIN": "${{ secrets.UNIVERSE_DOMAIN }}"
             }
+          SERVICE_ACCOUNT_KEY_JSON: ${{ secrets.SERVICE_ACCOUNT_KEY_JSON }}
